@@ -1,0 +1,28 @@
+{
+  "name": "iametric",
+  "version": "0.0.1",
+  "description": "Tool to retrieve and analyse the effectiveness of a project's IA",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BHouwens/IAMetric.git"
+  },
+  "keywords": [
+    "UX",
+    "JavaScript",
+    "IA",
+    "D3",
+    "information_architecture"
+  ],
+  "author": "Byron Houwens",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BHouwens/IAMetric/issues"
+  },
+  "homepage": "https://github.com/BHouwens/IAMetric#readme",
+  "dependencies": {
+    "d3": "^4.1.0",
+    "d3-scale": "^1.0.0",
+    "npm-dev-boilerplate": "^1.0.6",
+    "webpack-node-externals": "^1.2.0"
+  }
+}
