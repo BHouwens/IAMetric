@@ -20,9 +20,9 @@
   },
   "homepage": "https://github.com/BHouwens/IAMetric#readme",
   "dependencies": {
-    "d3": "^4.1.0",
     "d3-axis": "^1.0.0",
     "d3-scale": "^1.0.0",
+    "d3-selection": "^1.0.0",
     "npm-dev-boilerplate": "^1.0.6",
     "webpack-node-externals": "^1.2.0"
   }
