@@ -1,5 +1,5 @@
 import React from 'react';
-import { DotChartComponent } from '../DotChart/DotChartComponent';
+import { DotChart } from '../../containers/DotChart';
 import styles from './App.css';
 
 export class App extends React.Component {
@@ -7,7 +7,7 @@ export class App extends React.Component {
     render() {
         return (
             <div className={styles.app}>
-                <DotChartComponent />
+                <DotChart />
             </div>
         );
     }

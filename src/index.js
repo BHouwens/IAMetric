@@ -6,14 +6,16 @@ import { createStore } from 'redux';
 /*- Internal imports -*/
 
 import { App } from './components';
-// import { rootReducer } from './reducers';
+import { rootReducer } from './reducers';
 
-// const store = createStore(
-//     rootReducer,
-//     window.devToolsExtension ? window.devToolsExtension() : undefined
-// );
+const store = createStore(
+    rootReducer,
+    window.devToolsExtension ? window.devToolsExtension() : undefined
+);
 
 renderToDom(
-    <App />,
+    <Provider store={store}>
+        <App />
+    </Provider>,
     document.querySelector('#app')
 );

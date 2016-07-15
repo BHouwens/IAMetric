@@ -20,7 +20,8 @@ export class Chart {
     /**
      *  A dot-bubble chart to display discrete data
      * 
-     *  @param {string} element - Element to attach the chart to
+     *  @param {Object} config - Config object, based on the
+     *                           defaultConfig above
      */
 
     constructor(config) {
@@ -66,14 +67,14 @@ export class Chart {
      */
 
     constructAxes() {
-        let { width, height } = this;
+        let { width, height, data } = this;
 
         this.x = scaleOrdinal()
-                   .domain(['A', 'D'])
+                   .domain(data.map(datum => datum.x))
                    .range([0, width]);
 
         this.y = scaleOrdinal()
-                   .domain(['X', 'Y'])
+                   .domain(data.map(datum => datum.y))
                    .range([height, 0]);
 
         this.xAxis = axisBottom(this.x);
@@ -86,7 +87,10 @@ export class Chart {
      */
 
     constructDots() {
+        let { data } = this;
 
+        let dot = this.chart.selectAll('.dot')
+                       .data(data);
     }
 
 }
