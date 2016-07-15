@@ -13,6 +13,8 @@ export class DotChart {
     constructor(element) {
         this.x;
         this.y;
+        this.xAxis;
+        this.yAxis;
         this.element = element;
         this.width = 400;
         this.height = 300;
@@ -40,18 +42,8 @@ export class DotChart {
                    .domain(['X', 'Y'])
                    .range([0, 1]);
 
-        this.constructAxes();
-    }
-
-
-    /**
-     *  Constructs and bolts on axes to chart
-     */
-
-    constructAxes() {
-        let { x, y } = this;
-
-        this.xAxis = 
+        this.xAxis = d3.axisBottom(this.x);
+        this.yAxis = d3.axisLeft(this.y);
     }
 
 }
