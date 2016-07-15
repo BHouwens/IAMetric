@@ -1,6 +1,19 @@
 # IAMetric
 Tool to get and visualise an information architecture's effectiveness
 
+## Getting Started
+If you're keen to run this in a dev environment, run:
+    
+    make install
+
+After that's done you can run:
+
+    make start
+
+Or view script commands with:
+
+    make help
+
 ## Thoughts
 Most current closed card sorting tools available don't allow for helpful, meaningful understanding of the data, bearing no context and caring little for the design of the data's visualisation. The point of such a tool should be to gain insights about a project or site's IA; questions like "where are the current pain points in an app's IA" or "is there a general consensus amongst users about the taxonomy of a particular concept" are never really explored, brought to the fore, or proffered in an immediate way.
 

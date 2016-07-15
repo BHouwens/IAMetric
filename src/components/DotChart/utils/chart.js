@@ -20,8 +20,7 @@ export class Chart {
     /**
      *  A dot-bubble chart to display discrete data
      * 
-     *  @param {Object} config - Config object, based on the
-     *                           defaultConfig above
+     *  @param {Object} config - Config object, based on the defaultConfig above
      */
 
     constructor(config) {
@@ -53,7 +52,7 @@ export class Chart {
 
         this.chart.append('g')
             .attr('class', 'x-axis')
-            .attr("transform", "translate(0," + height + ")")
+            .attr('transform', `translate(0, ${height})`)
             .call(this.xAxis);
 
         this.chart.append('g')
