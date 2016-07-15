@@ -2,7 +2,20 @@ import { select } from 'd3-selection';
 import { scaleOrdinal } from 'd3-scale';
 import { axisLeft, axisBottom } from 'd3-axis';
 
-export class DotChart {
+const defaultConfig = {
+    width: 500,
+    height: 300,
+    element: '#chart',
+    margin: {
+        top: 30,
+        left: 30,
+        bottom: 30,
+        right: 30
+    }
+};
+
+
+export class Chart {
 
     /**
      *  A dot-bubble chart to display discrete data
@@ -10,20 +23,13 @@ export class DotChart {
      *  @param {string} element - Element to attach the chart to
      */
 
-    constructor(element) {
+    constructor(config) {
         this.x;
         this.y;
         this.xAxis;
         this.yAxis;
-        this.element = element;
-        this.width = 500;
-        this.height = 300;
-        this.margin = {
-            top: 30,
-            left: 30,
-            bottom: 30,
-            right: 30
-        };
+
+        Object.assign(this, defaultConfig, config);
 
         this.init();
     }
@@ -63,7 +69,7 @@ export class DotChart {
         let { width, height } = this;
 
         this.x = scaleOrdinal()
-                   .domain(['A', 'B'])
+                   .domain(['A', 'D'])
                    .range([0, width]);
 
         this.y = scaleOrdinal()
