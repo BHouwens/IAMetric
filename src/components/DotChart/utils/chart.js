@@ -59,6 +59,8 @@ export class Chart {
         this.chart.append('g')
             .attr('class', 'y-axis')
             .call(this.yAxis);
+
+        this.constructDots();
     }
 
 
@@ -90,7 +92,16 @@ export class Chart {
         let { data } = this;
 
         let dot = this.chart.selectAll('.dot')
-                       .data(data);
+                    .data(data)
+                    .enter()
+                  .append('circle')
+                    .attr('r', 3.5)
+                    .attr('cx', d => d.x)
+                    .attr('cy', d => d.y)
+                    .attr('class', 'dot')
+                    .style('fill', 'blue')
+                  .exit()
+                  .remove();
     }
 
 }
