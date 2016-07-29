@@ -23,6 +23,7 @@
     "d3-axis": "^1.0.0",
     "d3-scale": "^1.0.0",
     "d3-selection": "^1.0.0",
+    "json-loader": "^0.5.4",
     "npm-dev-boilerplate": "^1.0.6",
     "webpack-node-externals": "^1.2.0"
   }

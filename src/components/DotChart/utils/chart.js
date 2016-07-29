@@ -1,5 +1,5 @@
 import { select } from 'd3-selection';
-import { scaleOrdinal } from 'd3-scale';
+import { scaleBand, scaleOrdinal } from 'd3-scale';
 import { axisLeft, axisBottom } from 'd3-axis';
 
 const defaultConfig = {
@@ -68,14 +68,15 @@ export class Chart {
      */
 
     constructAxes() {
-        let { width, height, data } = this;
+        let { width, height, data } = this,
+            cards = Object.keys(data[0].cards).map(entry => { return {'animal': entry} });
 
-        this.x = scaleOrdinal()
-                   .domain(data.map(datum => datum.x))
+        this.x = scaleBand()
+                   .domain(cards.map(datum => datum.animal))
                    .range([0, width]);
 
-        this.y = scaleOrdinal()
-                   .domain(data.map(datum => datum.y))
+        this.y = scaleBand()
+                   .domain(data.map(datum => datum.category))
                    .range([height, 0]);
 
         this.xAxis = axisBottom(this.x);

@@ -1,14 +1,7 @@
+import * as rawData from '../sample.json';
+
 const initialState = {
-    data: [
-        {
-            x: 'A',
-            y: 1
-        },
-        {
-            x: 'B',
-            y: 2
-        }
-    ]
+    data: rawData.default
 };
 
 export function dotChart(state = initialState, action) {

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { showPainPoints } from '../actions/painPointButton';
-import { PainPointButtonComponent } from '../../components/PainPointButton/PainPointButtonComponent';
+import { PainPointButtonComponent } from '../components/PainPointButton/PainPointButtonComponent';
 
 function mapStateToProps(state) {
     let { paintPointButton } = state;
@@ -16,6 +16,5 @@ function mapDispatchToState(dispatch) {
 }
 
 export const PainPointButton = connect(
-    mapStateToProps,
-    mapDispatchToState
+    null
 )( PainPointButtonComponent );

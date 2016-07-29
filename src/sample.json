@@ -1,0 +1,62 @@
+[
+    {
+        "category" : "birds",
+        "cards": {
+            "finch": 8,
+            "lion": 0,
+            "velociraptor": 3,
+            "monkey": 0,
+            "orca": 0,
+            "snake": 0,
+            "emu": 5,
+            "squid": 0,
+            "goat": 0,
+            "human": 0
+        }
+    },
+    {
+        "category" : "fish",
+        "cards": {
+            "finch": 0,
+            "lion": 0,
+            "velociraptor": 0,
+            "monkey": 0,
+            "orca": 3,
+            "snake": 0,
+            "emu": 0,
+            "squid": 5,
+            "goat": 0,
+            "human": 0
+        }
+    },
+    {
+        "category" : "primates",
+        "cards" :{
+            "finch": 0,
+            "lion": 0,
+            "velociraptor": 0,
+            "monkey": 8,
+            "orca": 0,
+            "snake": 0,
+            "emu": 0,
+            "squid": 0,
+            "goat": 0,
+            "human": 5
+        }
+    },
+    {
+        "category" : "mammals",
+        "cards" : {
+            "finch": 0,
+            "lion": 8,
+            "velociraptor": 0,
+            "monkey": 8,
+            "orca": 5,
+            "snake": 0,
+            "emu": 3,
+            "squid": 0,
+            "goat": 8,
+            "human": 8
+        }
+    }
+]
