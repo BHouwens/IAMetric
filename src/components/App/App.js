@@ -1,5 +1,5 @@
 import React from 'react';
-import { DotChart } from '../../containers/DotChart';
+import { BubbleMatrix } from '../../containers/BubbleMatrix';
 import { AverageMetric } from '../../containers/AverageMetric';
 
 import styles from './App.css';
@@ -13,7 +13,7 @@ export class App extends React.Component {
                     <AverageMetric />
                 </section>
 
-                <DotChart />
+                <BubbleMatrix />
             </div>
         );
     }
