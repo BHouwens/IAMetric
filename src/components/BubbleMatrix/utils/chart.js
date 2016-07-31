@@ -1,5 +1,5 @@
 import { select } from 'd3-selection';
-import { scalePoint } from 'd3-scale';
+import { scalePoint, scaleSqrt } from 'd3-scale';
 import { axisLeft, axisBottom } from 'd3-axis';
 import { range as arrayRange } from 'd3-array';
 
@@ -29,9 +29,12 @@ export class Chart {
         this.y;
         this.xAxis;
         this.yAxis;
+        this.radius;
 
         Object.assign(this, defaultConfig, config);
 
+        this.line_width = this.width - this.margin.left;
+        this.max_radius = this.height / 60;
         this.init();
     }
 
@@ -44,6 +47,7 @@ export class Chart {
         this.constructChart();
         this.constructYAxis();
         this.constructXAxis();
+        this.constructHorizontalGrid();
         this.constructBubbles();
     }
 
@@ -56,10 +60,12 @@ export class Chart {
         let { element, width, height, margin } = this;
 
         this.chart = select(element)
-            .attr('width', width + margin.left + (margin.right * 2))
-            .attr('height', height + margin.top + margin.bottom)
+            .attr('width', width + (margin.left * 2) + (margin.right * 2))
+            .attr('height', height + margin.top + (margin.bottom * 2))
             .append('g')
             .attr('transform', `translate(${margin.left}, ${margin.top})`);
+
+        this.radius = scaleSqrt().range([1, this.max_radius]);
     }
 
 
@@ -73,7 +79,7 @@ export class Chart {
 
         let yLabels = scalePoint()
             .domain(rows.map(row => row.category))
-            .range([height, 0]);
+            .range([0, height]);
 
         this.y = scalePoint()
             .domain(arrayRange(0, rows.length))
@@ -108,8 +114,28 @@ export class Chart {
 
         this.chart.append('g')
             .attr('class', 'x-axis')
-            .attr('transform', `translate(${margin.left}, ${height})`)
+            .attr('transform', `translate(${margin.left * 2}, ${height + margin.top})`)
             .call(this.xAxis);
+    }
+
+
+    /**
+     *  Constructs the horiztonal grid lines
+     */
+
+    constructHorizontalGrid() {
+        let { data, y, width, margin } = this;
+
+        this.chart.append('g')
+            .attr('class', 'grid')
+            .selectAll('rect')
+            .data(data.categories)
+            .enter()
+                .append('rect')
+                .attr('y', (_, idx) => y(idx))
+                .attr('x', margin.left * 2)
+                .attr('width', width)
+                .attr('height', 1);
     }
 
 
@@ -118,6 +144,28 @@ export class Chart {
      */
 
     constructBubbles() {
+        let { data, margin, x, y, radius } = this,
+            rows = data.categories,
+            columns = data.cards,
+            bubbles = this.chart.append('g')
+                .attr('class', 'bubbles')
+                .attr('transform', `translate(${margin.left}, 0)`);
+
+        for (let i = 0; i < rows.length; i++) {
+            let row = rows[i],
+                bubble = bubbles.append('g')
+                    .attr('class', 'row')
+                    .selectAll('circle')
+                    .data(row.values)
+                    .enter();
+
+            bubble.append('circle')
+                  .attr('class', () => row.category + ' ' + columns[i])
+                  .attr('data-value', (_, idx) => row.values[idx])
+                  .attr('cy', () => y(i))
+                  .attr('cx', (_, idx) => x(idx) + margin.left)
+                  .attr('r', data => radius(data));
+        }
     }
 
 }
