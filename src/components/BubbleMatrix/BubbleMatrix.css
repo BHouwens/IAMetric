@@ -1,0 +1,15 @@
+:global .x-axis .domain,
+:global .y-axis .domain {
+    display: none;
+}
+
+:global .y-axis text,
+:global .x-axis text {
+    fill: #0a0a0a;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
+
+:global .grid rect {
+    fill: #e0e0e0;
+}

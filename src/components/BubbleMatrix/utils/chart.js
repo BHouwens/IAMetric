@@ -1,10 +1,11 @@
 import { select } from 'd3-selection';
-import { scalePoint, scaleSqrt } from 'd3-scale';
+import { scalePoint, scaleSqrt, scaleLinear } from 'd3-scale';
 import { axisLeft, axisBottom } from 'd3-axis';
+import { interpolateRgb } from 'd3-interpolate';
 import { range as arrayRange } from 'd3-array';
 
 const defaultConfig = {
-    width: 500,
+    width: 700,
     height: 300,
     element: '#chart',
     margin: {
@@ -151,6 +152,8 @@ export class Chart {
                 .attr('class', 'bubbles')
                 .attr('transform', `translate(${margin.left}, 0)`);
 
+        let { colourScale, colours } = this.getColourInterpolation('#6CAEFA', '#1567c4');
+
         for (let i = 0; i < rows.length; i++) {
             let row = rows[i],
                 bubble = bubbles.append('g')
@@ -160,12 +163,33 @@ export class Chart {
                     .enter();
 
             bubble.append('circle')
-                  .attr('class', () => row.category + ' ' + columns[i])
+                  .attr('class', (_, idx) => row.category + ' ' + columns[idx])
                   .attr('data-value', (_, idx) => row.values[idx])
                   .attr('cy', () => y(i))
                   .attr('cx', (_, idx) => x(idx) + margin.left)
+                  .attr('fill', data => colours( colourScale(data) ))
                   .attr('r', data => radius(data));
         }
+    }
+
+
+    /**
+     *  Creates a colour interpolation for bubbles
+     * 
+     *  @param {string} firstColour - Lower bound of interpolation
+     *  @param {string} secondColour - Upper bound of interpolation
+     */
+
+    getColourInterpolation(firstColour, secondColour) {
+        let { data } = this,
+            rows = data.categories,
+            expandedValues = rows.map(entry => entry.values),
+            finalValues = [].concat.apply([], expandedValues);
+
+        return {
+            colourScale : scaleLinear().domain([0, Math.max(...finalValues)]).range([0, 1]),
+            colours : interpolateRgb(firstColour, secondColour)
+        };
     }
 
 }
