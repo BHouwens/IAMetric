@@ -13,3 +13,7 @@
 :global .grid rect {
     fill: #e0e0e0;
 }
+
+.container{
+    clear: both;
+}

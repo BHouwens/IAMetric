@@ -1,5 +1,5 @@
 const initialState = {
-    metric: 0,
+    metric: 37,
     description: 'Average IA Effectiveness',
     className: 'active'
 };

@@ -1,0 +1,15 @@
+.metric h1{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: responsive 50px 64px;
+    font-weight: bold;
+    float: left;
+    color: #2d2d2d;
+}
+
+.metric h2{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: responsive 18px 20px;
+    font-weight: bold;
+    float: left;
+    color: #2d2d2d;
+}

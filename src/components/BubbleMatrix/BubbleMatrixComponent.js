@@ -14,6 +14,10 @@ export class BubbleMatrixComponent extends React.Component {
     }
 
     render() {
-        return <svg ref="chart"></svg>
+        return (
+            <div className={styles.container}>
+                <svg ref="chart"></svg>
+            </div>
+        );
     }
 }
