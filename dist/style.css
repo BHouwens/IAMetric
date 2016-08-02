@@ -1,0 +1,116 @@
+.x-axis .domain,
+.y-axis .domain {
+    display: none;
+}
+
+.y-axis text,
+.x-axis text {
+    fill: #0a0a0a;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.grid rect {
+    fill: #e0e0e0;
+}
+
+.BubbleMatrix__container___3aXSm{
+    clear: both;
+}.AverageMetric__metric___1dM5Z:before,
+.AverageMetric__metric___1dM5Z:after {
+    content: ' ';
+    display: table;
+}
+
+.AverageMetric__metric___1dM5Z:after {
+    clear: both;
+}
+
+.AverageMetric__metric___1dM5Z {
+    margin-top: 40px;
+    zoom: 1;
+}
+
+.AverageMetric__metric___1dM5Z h1{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: calc(50px + 14 * ((100vw - 420px) / 860));
+    font-weight: bold;
+    float: left;
+    color: #2d2d2d;
+    margin-top: 0;
+}
+
+.AverageMetric__container___3BDbT:before,
+.AverageMetric__container___3BDbT:after {
+    content: ' ';
+    display: table;
+}
+
+.AverageMetric__container___3BDbT:after {
+    clear: both;
+}
+
+.AverageMetric__container___3BDbT{
+    float: left;
+    margin-left: 15px;
+    zoom: 1;
+
+}
+
+.AverageMetric__container___3BDbT h2{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: calc(18px + 2 * ((100vw - 420px) / 860));
+    font-weight: bold;
+    color: #2d2d2d;
+    margin-top: 15px;
+    margin-bottom: 0;
+}
+
+.AverageMetric__container___3BDbT a{
+    color: #5CC6F3;
+    transition: 0.3s;
+    font-size: calc(11px + 2 * ((100vw - 420px) / 860));
+    font-style: italic;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.AverageMetric__container___3BDbT a:hover{
+    color: rgb(44,118,202);
+}
+
+@media screen and (min-width: 1280px) {
+
+    .AverageMetric__metric___1dM5Z h1 {
+        font-size: 64px;
+    }
+
+    .AverageMetric__container___3BDbT h2 {
+        font-size: 20px;
+    }
+
+    .AverageMetric__container___3BDbT a {
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width: 420px) {
+
+    .AverageMetric__metric___1dM5Z h1 {
+        font-size: 50px;
+    }
+
+    .AverageMetric__container___3BDbT h2 {
+        font-size: 18px;
+    }
+
+    .AverageMetric__container___3BDbT a {
+        font-size: 11px;
+    }
+}.App__app___2oExz{
+    max-width: 1080px;
+    width: 90%;
+    margin: 0 auto;
+    display: block;
+}
+/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzdHlsZS5jc3MiLCJzb3VyY2VSb290IjoiIn0=*/
