@@ -5,11 +5,14 @@ import styles from './BubbleMatrix.css';
 export class BubbleMatrixComponent extends React.Component {
 
     componentDidMount() {
-        let { data } = this.props;
+        let { data } = this.props,
+            width = document.querySelector('.'+styles.container).clientWidth;
 
         this.chart = new Chart({
-            element: this.refs.chart,
-            data
+            width,
+            data,
+            height: 400,
+            element: this.refs.chart
         });
     }
 

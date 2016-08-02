@@ -1,15 +1,41 @@
-.metric h1{
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: responsive 50px 64px;
-    font-weight: bold;
-    float: left;
-    color: #2d2d2d;
+.metric {
+    margin-top: 40px;
+    clear: fix-legacy;
+
+    h1{
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: responsive 50px 64px;
+        font-weight: bold;
+        float: left;
+        color: #2d2d2d;
+        margin-top: 0;
+    }
 }
 
-.metric h2{
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: responsive 18px 20px;
-    font-weight: bold;
+.container{
+    clear: fix-legacy;
     float: left;
-    color: #2d2d2d;
+    margin-left: 15px;
+
+    h2{
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: responsive 18px 20px;
+        font-weight: bold;
+        color: #2d2d2d;
+        margin-top: 15px;
+        margin-bottom: 0;
+    }
+
+    a{
+        color: #5CC6F3;
+        transition: 0.3s;
+        font-size: responsive 11px 13px;
+        font-style: italic;
+        font-family: Arial, Helvetica, sans-serif;
+
+        &:hover{
+            color: lighten(#1567c4, 10%);
+        }
+    }
+
 }
