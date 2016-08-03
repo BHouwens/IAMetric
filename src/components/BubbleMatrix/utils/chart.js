@@ -1,4 +1,4 @@
-/*--------- D3 Modules ---------*/ 
+/*--------- D3 Modules ---------*/
 
 import { select, selectAll } from 'd3-selection';
 import { scalePoint, scaleSqrt, scaleLinear } from 'd3-scale';
@@ -41,7 +41,6 @@ export class Chart {
         Object.assign(this, defaultConfig, config);
 
         this.width = this.width - ((this.margin.left * 2) + (this.margin.right * 2));
-        this.line_width = this.width - this.margin.left;
         this.max_radius = this.height / 50;
         this.init();
     }
@@ -99,8 +98,6 @@ export class Chart {
             .attr('transform', `translate(${margin.left}, 0)`)
             .attr('class', 'y-axis')
             .call(this.yAxis);
-
-        this.setupEventListeners(svgYAxis);
     }
 
 
@@ -126,8 +123,6 @@ export class Chart {
             .attr('class', 'x-axis')
             .attr('transform', `translate(${margin.left * 2}, ${height + margin.top})`)
             .call(this.xAxis);
-
-        this.setupEventListeners(svgXAxis);
     }
 
 
@@ -205,34 +200,54 @@ export class Chart {
 
 
     /**
-     *  Handles the mouse over and leave events for the 
-     *  ticks on axes
+     *  Performs the chart-related behavioural changes
+     *  on mouse enter
      * 
-     *  @param {Object} axis - Axis to set up listener for
+     *  @param {string} d - The value of the tick hovered over
+     *  @param {Object} axisTicks - All ticks for the current axis
      */
 
-    setupEventListeners(axis) {
-        axis.selectAll('.tick').on('mouseenter', d => {
-            let bubbles = select('.bubbles').selectAll('.bubble').transition().duration(200),
-                domBubbles = document.querySelectorAll('.bubble'),
-                grid = select('.grid').transition().duration(200),
-                allTicks = axis.selectAll('.tick').transition().duration(200);
+    onMouseEnterForChart(d, axisTicks) {
+        let bubbles = select('.bubbles').selectAll('.bubble').transition().duration(200),
+            domBubbles = document.querySelectorAll('.bubble'),
+            grid = select('.grid').transition().duration(200),
+            allTicks = axisTicks.transition().duration(200);
 
-            grid.attr('opacity', '0.5');
-            allTicks.attr('opacity', t => t == d ? '1' : '0.1');
-            bubbles.attr('opacity', (_, i) => {
-                return domBubbles[i].className.baseVal.indexOf(d) == -1 ? '0.1' : '1'
-            });
-        })
-        .on('mouseleave', _ => {
-            let bubbles = select('.bubbles').selectAll('.bubble').transition().duration(200),
-                grid = select('.grid').transition().duration(200),
-                allTicks = axis.selectAll('.tick').transition().duration(200);
-
-            bubbles.attr('opacity', '1');
-            grid.attr('opacity', '1');
-            allTicks.attr('opacity', '1');
+        grid.attr('opacity', '0.5');
+        allTicks.attr('opacity', t => t == d ? '1' : '0.1');
+        bubbles.attr('opacity', (_, i) => {
+            return domBubbles[i].className.baseVal.indexOf(d) == -1 ? '0.1' : '1'
         });
+    }
+
+
+    /**
+     *  Performs the chart-related behavioural changes
+     *  on mouse leave
+     * 
+     *  @param {Object} axisTicks - All ticks for the current axis
+     */
+
+    onMouseLeaveForChart(axisTicks) {
+        let bubbles = select('.bubbles').selectAll('.bubble').transition().duration(200),
+            grid = select('.grid').transition().duration(200),
+            allTicks = axisTicks.transition().duration(200);
+
+        bubbles.attr('opacity', '1');
+        grid.attr('opacity', '1');
+        allTicks.attr('opacity', '1');
+    }
+
+
+    /**
+     *  Returns the ticks for the specified axis,
+     *  allowing them to be exposed externally
+     * 
+     *  @param {string} axis - Axis class to select
+     */
+
+    axisTicks(axis) {
+        return select('.' + axis).selectAll('.tick');
     }
 
 }
