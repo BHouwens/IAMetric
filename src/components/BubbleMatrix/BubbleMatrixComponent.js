@@ -6,6 +6,11 @@ import styles from './BubbleMatrix.css';
 
 export class BubbleMatrixComponent extends React.Component {
 
+    /**
+     *  Sets up the chart and sets up
+     *  event listeners
+     */
+
     componentDidMount() {
         let { data } = this.props,
             width = document.querySelector('.'+styles.container).clientWidth;
@@ -20,10 +25,28 @@ export class BubbleMatrixComponent extends React.Component {
         this.setupDispatches();
     }
 
+
+    /**
+     *  Sets up the axis ticks for the mouse events
+     */
+
     setupDispatches() {
+        let xAxisTicks = this.chart.axisTicks('x-axis'),
+            yAxisTicks = this.chart.axisTicks('y-axis');
+
+        this.handleMouseEvents(xAxisTicks, yAxisTicks);
+    }
+
+
+    /**
+     *  Sets up listeners for mouse events
+     * 
+     *  @param {Object} xAxisTicks - D3-selected x-axis ticks
+     *  @param {Object} yAxisTicks - D3-selected y-axis ticks
+     */
+
+    handleMouseEvents(xAxisTicks, yAxisTicks) {
         let { tickHoverOn, tickHoverOff } = this.props,
-            xAxisTicks = this.chart.axisTicks('x-axis'),
-            yAxisTicks = this.chart.axisTicks('y-axis'),
             domBubbles = document.querySelectorAll('.bubble');
 
         xAxisTicks.on('mouseenter', d => {
@@ -38,7 +61,21 @@ export class BubbleMatrixComponent extends React.Component {
             tickHoverOff(); 
             this.chart.onMouseLeaveForChart(xAxisTicks);
         });
+
+        yAxisTicks.on('mouseenter', d => {
+            let values = [].slice.call(domBubbles)
+                .filter(entry => entry.className.baseVal.indexOf(d) != -1)
+                .map(entry => entry.getAttribute('data-value'));
+
+            tickHoverOn(calculateCardEffectiveness(values));
+            this.chart.onMouseEnterForChart(d, yAxisTicks);
+
+        }).on('mouseleave', _ => { 
+            tickHoverOff(); 
+            this.chart.onMouseLeaveForChart(yAxisTicks);
+        });
     }
+
 
     render() {
         return (

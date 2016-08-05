@@ -70,7 +70,7 @@ export class Chart {
             .attr('width', width + (margin.left * 2) + (margin.right * 2))
             .attr('height', height + margin.top + (margin.bottom * 2))
             .append('g')
-            .attr('transform', `translate(${margin.left}, ${margin.top})`);
+                .attr('transform', `translate(${margin.left}, ${margin.top})`);
 
         this.radius = scaleSqrt().range([1, this.max_radius]);
     }
@@ -139,10 +139,10 @@ export class Chart {
             .data(data.categories)
             .enter()
             .append('rect')
-            .attr('y', (_, idx) => y(idx))
-            .attr('x', margin.left * 2)
-            .attr('width', width)
-            .attr('height', 1);
+                .attr('y', (_, idx) => y(idx))
+                .attr('x', margin.left * 2)
+                .attr('width', width)
+                .attr('height', 1);
     }
 
 
@@ -169,12 +169,26 @@ export class Chart {
                     .enter();
 
             bubble.append('circle')
-                .attr('class', (_, idx) => 'bubble ' + row.category + ' ' + columns[idx])
+                .attr('class', (_, idx) => `bubble ${row.category} ${columns[idx]}`)
                 .attr('data-value', (_, idx) => row.values[idx])
                 .attr('cy', () => y(i))
                 .attr('cx', (_, idx) => x(idx) + margin.left)
                 .attr('fill', data => colours(colourScale(data)))
                 .attr('r', data => radius(data));
+
+            let amountCircle = bubble.append('g')
+                .attr('class', (_, idx) => `amount ${row.category} ${columns[idx]}`)
+                .attr('transform', (_, idx) => `translate(${x(idx) + margin.left}, ${y(i)})`);
+
+            amountCircle.append('circle')
+                .attr('fill', '#000')
+                .attr('r', 13);
+
+            amountCircle.append('text')
+                .attr('text-anchor', 'middle')
+                .attr('fill', '#fff')
+                .attr('y', '1%')
+                .text((_, idx) => row.values[idx]);
         }
     }
 
@@ -210,6 +224,8 @@ export class Chart {
     onMouseEnterForChart(d, axisTicks) {
         let bubbles = select('.bubbles').selectAll('.bubble').transition().duration(200),
             domBubbles = document.querySelectorAll('.bubble'),
+            amounts = selectAll('.amount'),
+            domAmounts = document.querySelectorAll('.amount'),
             grid = select('.grid').transition().duration(200),
             allTicks = axisTicks.transition().duration(200);
 
@@ -218,6 +234,12 @@ export class Chart {
         bubbles.attr('opacity', (_, i) => {
             return domBubbles[i].className.baseVal.indexOf(d) == -1 ? '0.1' : '1'
         });
+
+        amounts.attr('class', (_, i) => {
+            return domAmounts[i].className.baseVal.indexOf(d) == -1 ? 
+                   domAmounts[i].className.baseVal : 
+                   domAmounts[i].className.baseVal + ' active';
+        })
     }
 
 
@@ -231,11 +253,15 @@ export class Chart {
     onMouseLeaveForChart(axisTicks) {
         let bubbles = select('.bubbles').selectAll('.bubble').transition().duration(200),
             grid = select('.grid').transition().duration(200),
+            amounts = selectAll('.amount'),
+            domAmounts = document.querySelectorAll('.amount'),
             allTicks = axisTicks.transition().duration(200);
 
         bubbles.attr('opacity', '1');
         grid.attr('opacity', '1');
         allTicks.attr('opacity', '1');
+
+        amounts.attr('class', (_, i) => domAmounts[i].className.baseVal.replace(' active', ''));
     }
 
 
