@@ -15,6 +15,24 @@
     fill: #e0e0e0;
 }
 
+:global .amount {
+    opacity: 0;
+    transition: 0.3s;
+
+    &.active{
+        opacity: 1;
+    }
+
+    text{
+        font-size: 12px;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    circle{
+        opacity: 0.5;
+    }
+}
+
 .container{
     clear: both;
 }
