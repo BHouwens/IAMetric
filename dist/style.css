@@ -15,6 +15,27 @@
     fill: #e0e0e0;
 }
 
+.amount {
+    opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    transition: 0.3s;
+}
+
+.amount.active{
+    opacity: 1;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+}
+
+.amount text{
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.amount circle{
+    opacity: 0.5;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";
+}
+
 .BubbleMatrix__container___3aXSm{
     clear: both;
 }.AverageMetric__metric___1dM5Z:before,
