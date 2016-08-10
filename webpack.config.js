@@ -73,9 +73,16 @@ module.exports = {
   },
   plugins: [
     new ExtractTextPlugin('style.css', { allChunks: true }),
-    new webpack.ProvidePlugin({
-			'fetch': 'imports?this=>global!exports?global.fetch!node-fetch'
-		}),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      }
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    })
   ],
   devtool: '#source-map',
   devServer: {
