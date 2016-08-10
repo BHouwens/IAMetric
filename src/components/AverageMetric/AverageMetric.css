@@ -1,6 +1,7 @@
 .metric {
     margin-top: 40px;
     clear: fix-legacy;
+    position: relative;
 
     h1{
         font-family: Arial, Helvetica, sans-serif;
@@ -30,6 +31,7 @@
         color: #5CC6F3;
         transition: 0.3s;
         opacity: 0;
+        cursor: pointer;
         visibility: hidden;
         font-size: responsive 11px 13px;
         font-style: italic;
@@ -45,4 +47,46 @@
         }
     }
 
+}
+
+.improvement{
+    clear: fix-legacy;
+    position: absolute;
+    z-index: 3;
+    max-width: 730px;
+    display: block;
+    bottom: -270px;
+    transition: 0.3s;
+    font-family: 'Roboto Slab', serif;
+    visibility: hidden;
+    opacity: 0;
+
+    &.active{
+        opacity: 1;
+        visibility: visible;
+    }
+
+    p{
+        font-size: responsive 16px 18px;
+    }
+}
+
+p.specific{
+    font-size: responsive 14px 16px;
+    color: #1567c4;
+    margin-top: 40px;
+}
+
+ol.specific{
+    padding-left: 20px;
+}
+
+ol.specific li{
+    color: lighten(#1567c4, 5%);
+    margin-bottom: 5px;
+
+    span{
+        color: darken(#1567c4, 15%);
+        font-weight: 700;
+    }
 }

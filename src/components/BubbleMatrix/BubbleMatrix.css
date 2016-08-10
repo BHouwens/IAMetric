@@ -35,4 +35,23 @@
 
 .container{
     clear: both;
+    position: relative;
+}
+
+.cover{
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 100%;
+    cursor: pointer;
+    height: 100%;
+    transition: 0.3s;
+    opacity: 0;
+    visibility: hidden;
+    background: rgba(255, 255, 255, 0.9);
+
+    &.active{
+        opacity: 1;
+        visibility: visible;
+    }
 }

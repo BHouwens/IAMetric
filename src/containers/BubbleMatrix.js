@@ -1,10 +1,13 @@
 import { connect } from 'react-redux';
-import { updateEffectiveness, resetEffectiveness } from '../actions/bubbleMatrixActions';
+import { updateEffectiveness, resetEffectiveness, closeImprovement } from '../actions/bubbleMatrixActions';
 import { BubbleMatrixComponent } from '../components/BubbleMatrix/BubbleMatrixComponent';
 
 function mapStateToProps(state) {
     let { bubbleMatrix } = state;
-    return { data: bubbleMatrix.data };
+    return { 
+        data: bubbleMatrix.data,
+        improvement: bubbleMatrix.improvement 
+    };
 }
 
 function mapDispatchToState(dispatch) {
@@ -12,8 +15,11 @@ function mapDispatchToState(dispatch) {
         tickHoverOn: effectiveness => {
             dispatch(updateEffectiveness(effectiveness));
         },
-        tickHoverOff: _ => {
+        tickHoverOff: () => {
             dispatch(resetEffectiveness());
+        },
+        onCloseImprovement: () => {
+            dispatch(closeImprovement());
         }
     }
 }

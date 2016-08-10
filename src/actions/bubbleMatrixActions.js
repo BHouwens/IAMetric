@@ -10,3 +10,9 @@ export function resetEffectiveness() {
         type: 'RESET_EFFECTIVENESS'
     };
 }
+
+export function closeImprovement() {
+    return {
+        type: 'CLOSE_IMPROVEMENT'
+    }
+}
