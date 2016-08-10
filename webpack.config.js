@@ -77,7 +77,7 @@ module.exports = {
 			'fetch': 'imports?this=>global!exports?global.fetch!node-fetch'
 		}),
   ],
-  devtool: '#inline-source-map',
+  devtool: '#source-map',
   devServer: {
     inline: true,
     stats: { colors: true },
