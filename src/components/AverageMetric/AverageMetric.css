@@ -53,7 +53,7 @@
     clear: fix-legacy;
     position: absolute;
     z-index: 3;
-    max-width: 730px;
+    width: 100%;
     display: block;
     bottom: -270px;
     transition: 0.3s;
@@ -69,6 +69,10 @@
     p{
         font-size: responsive 16px 18px;
     }
+}
+
+.improvementText{
+    max-width: 730px;
 }
 
 p.specific{
