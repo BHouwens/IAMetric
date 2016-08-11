@@ -7,8 +7,6 @@ export class AverageMetricComponent extends React.Component {
         let { metric, description, className, improvement, showImprovement } = this.props,
             improvementClass = improvement ? styles.active : '';
 
-        console.log(improvement);
-
         return (
             <div className={styles.metric}>
                 <h1>{metric}%</h1>
@@ -19,19 +17,21 @@ export class AverageMetricComponent extends React.Component {
                 </section>
 
                 <section className={styles.improvement + ' ' + improvementClass}>
-                    <p>
-                        The effectiveness of this IA is determined by how much your users have clustered cards into one or two categories. The more cards in one category, the better.
-                    </p>
+                    <section className={styles.improvementText}>
+                        <p>
+                            The effectiveness of this IA is determined by how much your users have clustered cards into one or two categories. The more cards in one category, the better.
+                        </p>
 
-                    <p className={styles.specific}>
-                        The score of {metric}% for this IA could be improved by:
-                    </p>
+                        <p className={styles.specific}>
+                            The score of {metric}% for this IA could be improved by:
+                        </p>
 
-                    <ol className={styles.specific}>
-                        <li>Getting rid of cards that are never categorised (such as <span>"snake"</span>)</li>
-                        <li>Renaming cards that users don't often place in any category, making them clearer (such as <span>"velociraptor"</span>)</li>
-                        <li>Creating more definitive categories so that users are clear on what they mean (such as <span>"mammals"</span>)</li>
-                    </ol>
+                        <ol className={styles.specific}>
+                            <li>Getting rid of cards that are never categorised (such as <span>"snake"</span>)</li>
+                            <li>Renaming cards that users don't often place in any category, making them clearer (such as <span>"velociraptor"</span>)</li>
+                            <li>Creating more definitive categories so that users are clear on what they mean (such as <span>"mammals"</span>)</li>
+                        </ol>
+                    </section>
                 </section>
             </div>
         );

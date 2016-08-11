@@ -83,6 +83,7 @@ export class BubbleMatrixComponent extends React.Component {
 
         return (
             <div className={styles.container}>
+                <span className={styles.close + ' ' + improvementClass} onClick={onCloseImprovement} title="Close"></span>
                 <div onClick={onCloseImprovement} className={styles.cover + ' ' + improvementClass} title="Clicking this will hide improvement information"></div>
                 <svg ref="chart"></svg>
             </div>

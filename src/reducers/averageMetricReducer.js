@@ -8,11 +8,12 @@ const initialState = {
 export function averageMetric(state = initialState, action) {
     switch(action.type) {
         case 'UPDATE_EFFECTIVENESS':
-            return Object.assign(state, {}, { 
+            return { 
                 metric : action.metric,
                 className : '',
-                description : 'Effectiveness for Current Card'
-            });
+                description : 'Effectiveness for Current Card',
+                improvement: false
+            };
 
         case 'RESET_EFFECTIVENESS':
             return initialState;

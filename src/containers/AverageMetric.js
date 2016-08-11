@@ -4,6 +4,7 @@ import { AverageMetricComponent } from '../components/AverageMetric/AverageMetri
 
 function mapStateToProps(state) {
     let { averageMetric } = state;
+
     return {
         metric: averageMetric.metric,
         description: averageMetric.description,
