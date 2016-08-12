@@ -2,7 +2,7 @@ import React from 'react';
 import { Chart } from './utils/chart';
 import { calculateCardEffectiveness } from './utils/effectiveness';
 
-import styles from './BubbleMatrix.css';
+import styles from './BubbleMatrix.pcss';
 
 export class BubbleMatrixComponent extends React.Component {
 

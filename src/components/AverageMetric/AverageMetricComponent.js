@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './AverageMetric.css';
+import styles from './AverageMetric.pcss';
 
 export class AverageMetricComponent extends React.Component {
 
