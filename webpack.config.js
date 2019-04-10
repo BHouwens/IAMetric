@@ -1,20 +1,5 @@
-/*------- PostCSS imports --------*/
-
-var autoprefixer = require('autoprefixer'),
-  rucksack = require('rucksack-css'),
-  cssVars = require('postcss-css-variables'),
-  imports = require('postcss-import'),
-  nesting = require('postcss-nested'),
-  mixins = require('postcss-sassy-mixins'),
-  colourFunctions = require('postcss-colour-functions'),
-  mqPacker = require('css-mqpacker');
-
-/*--------------------------------*/
-
 var path = require("path"),
-    nodeExternals = require('webpack-node-externals'),
-    webpack = require('webpack'),
-    ExtractTextPlugin = require('extract-text-webpack-plugin');
+    webpack = require('webpack');
 
 module.exports = {
   entry: {
@@ -28,62 +13,46 @@ module.exports = {
     filename: '[name].js',
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.p?css$/,
-        loader: ExtractTextPlugin.extract(
+        use: [
           'style-loader', 
-          'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader'
-        ) 
+          'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+          'postcss-loader'
+        ]
       },
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: 'babel',
-        query: { 
-          presets: ['es2015', 'react', 'stage-0'] 
-        }
+        use: 'babel-loader'
       },
       {
         test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'url-loader?limit=10000&minetype=application/font-woff',
-      },
-      {
-        test: /\.json$/,
-        loader: 'json-loader'
+        use: 'url-loader?limit=10000&minetype=application/font-woff',
       },
       {
         test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        loader: 'file-loader',
+        use: 'file-loader',
       },
     ]
   },
   resolve: {
-      extensions: ['', '.js', ".html", ".css"]
+      extensions: ['.js', ".html", ".css"]
   },
-  postcss: function () {
-    return [imports,
-            nesting,
-            colourFunctions,
-            cssVars,
-            mixins,
-            autoprefixer({ browsers: ['last 5 versions'] }),
-            rucksack({ fallbacks: true }),
-            mqPacker];
-  },
-  plugins: [
-    new ExtractTextPlugin('style.css', { allChunks: true }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
-    }),
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify('production')
-      }
-    })
-  ],
+  // plugins: [
+  //   new ExtractTextPlugin('style.css', { allChunks: true }),
+  //   new webpack.optimize.UglifyJsPlugin({
+  //     compress: {
+  //       warnings: false
+  //     }
+  //   }),
+  //   new webpack.DefinePlugin({
+  //     'process.env': {
+  //       'NODE_ENV': JSON.stringify('production')
+  //     }
+  //   })
+  // ],
   devtool: '#source-map',
   devServer: {
     inline: true,
